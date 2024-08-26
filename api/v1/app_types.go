@@ -17,6 +17,8 @@ limitations under the License.
 package v1
 
 import (
+	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -29,13 +31,25 @@ type AppSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of App. Edit app_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Foo string `json:"foo,omitempty"`
+	Deployment DeploymentTemplate `json:"depolyment,omitempty"`
+	Service    ServiceTemplate    `json:"service,omitempty"`
+}
+
+type DeploymentTemplate struct {
+	appsv1.DeploymentSpec `json:",inline"`
+}
+
+type ServiceTemplate struct {
+	corev1.ServiceSpec `json:",inline"`
 }
 
 // AppStatus defines the observed state of App
 type AppStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	Workflow appsv1.DeploymentStatus `json:"workflow"`
+	Network  corev1.ServiceStatus    `json:"network"`
 }
 
 // +kubebuilder:object:root=true
