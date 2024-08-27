@@ -17,7 +17,7 @@ how we build and enjoy it on our cluster.
 - kubectl version v1.11.3+.
 - Access to a Kubernetes v1.11.3+ cluster.
 
-### How we develop the operator
+## How we develop the operator
 
 **1. check the development environment**
 
