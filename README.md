@@ -19,7 +19,7 @@ how we build and enjoy it on our cluster.
 
 ## How we develop the operator
 
-**1. check the development environment**
+**1. Check the development environment**
 
 ```sh
 docker version # 27.1.1 & API version: 1.46
@@ -28,7 +28,7 @@ kubectl version --short # Client Version: v1.27.2 & Kustomize Version: v5.0.1
 minikube version # v1.33.1
 ```
 
-**2. create one project**
+**2. Create one project**
 
 - mkdir dirs and `kubebuilder init` the project
 
@@ -191,7 +191,7 @@ index c9d2446..c6cad8c 100644
 2.24.3 (Apple Git-128)
 ```
 
-**5. update the controller**
+**5. Update the controller**
 
 We use 'git format-patch HEAD^' to generate the controller patch.
 
@@ -406,7 +406,7 @@ index 893f21d..d153e65 100644
 2.24.3 (Apple Git-128)
 ```
 
-**6. run `make manifests` to see rbac changes**
+**6. Run `make manifests` to see rbac changes**
 
 We update the rbac setting in controller, making manifests would update the role.yaml file.
 
@@ -504,7 +504,7 @@ index 971ffed..71707d1 100644
 2.24.3 (Apple Git-128)
 ```
 
-**7. test our operator locally**
+**7. Test our operator locally**
 
 - `make install` to install our crd
 
@@ -590,19 +590,20 @@ Then you will get one URL like http://127.0.0.1:60356. Open it in your Firefox/C
 
 Here, I build the operator locally and push it to local cluster. So i don't set the
 repo here.
-**Build the operator**
+
+**1. Build the operator**
 
 ```sh
 make docker-build IMG=app-operator:v0.0.1
 ```
 
-**Upload/push it to your kluster**
+**2. Upload/push it to your kluster**
 
 ```sh
 minikube image load app-operator:v0.0.1 
 ```
 
-**Deploy the operator to the cluster with the image**
+**3. Deploy the operator to the cluster with the image**
 
 Before you enjoy the operator, try the following cmds to cleanup the cluster in case any
 unexpected errors.
@@ -639,7 +640,7 @@ deployment.apps/app-operator-controller-manager created
 
 We can see the crd is created by the deploy cmd.
 
-**Create instances of your solution**
+**4. Create instances of your solution**
 
 You can apply the samples (examples) from the config/sample:
 
@@ -649,7 +650,7 @@ kubectl apply -f  config/samples/apps_v1_app.yaml
 
 In the yaml file, you need to set the namespace to the operator namespace 'app-operator-system'.
 
-**Check the nginx service running**
+**5. Check the nginx service running**
 
 ```sh
 kubectl get pods -n app-operator-system
@@ -671,14 +672,6 @@ kubectl delete -k config/samples/
 ```sh
 make undeploy
 ```
-
-## Contributing
-
-// TODO(user): Add detailed information on how you would like others to contribute to this project
-
-**NOTE:** Run `make help` for more information on all potential `make` targets
-
-More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
 
 ## License
 
