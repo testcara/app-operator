@@ -32,7 +32,7 @@ type AppSpec struct {
 
 	// Foo is an example field of App. Edit app_types.go to remove/update
 	// Foo string `json:"foo,omitempty"`
-	Deployment DeploymentTemplate `json:"depolyment,omitempty"`
+	Deployment DeploymentTemplate `json:"deployment,omitempty"`
 	Service    ServiceTemplate    `json:"service,omitempty"`
 }
 
