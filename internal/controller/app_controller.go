@@ -184,6 +184,8 @@ func (r *AppReconciler) reconcileService(ctx context.Context, app *v1.App) (ctrl
 		newSvc.Spec = app.Spec.Service.ServiceSpec
 		newSvc.Spec.Selector = app.Labels
 
+		// the SetControllerReference is extrem important to ensure our control knows
+		// which resources we need to manage
 		if err := ctrl.SetControllerReference(app, newSvc, r.Scheme); err != nil {
 			log.Error(err, "Failed to SetControllerReference, will request after a short time")
 			return ctrl.Result{RequeueAfter: GenericRequestDuration}, err
